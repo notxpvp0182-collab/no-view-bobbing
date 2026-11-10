@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "noviewbobbing",
+  "version": "${version}",
+  "name": "No View Bobbing",
+  "description": "Control camera view bobbing and first-person hand rotation sway.",
+  "authors": [
+    "Ahmed"
+  ],
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.ahmed.noviewbobbing.NoViewBobbingClient"
+    ],
+    "modmenu": [
+      "dev.ahmed.noviewbobbing.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "noviewbobbing.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

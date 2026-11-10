@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.ahmed.noviewbobbing.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "GameRendererMixin",
+    "HeldItemRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
