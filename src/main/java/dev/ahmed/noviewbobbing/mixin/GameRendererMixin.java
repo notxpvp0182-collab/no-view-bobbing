@@ -13,7 +13,7 @@ public class GameRendererMixin {
 
     @Inject(method = "bobView", at = @At("HEAD"), cancellable = true)
     private void noviewbobbing$disableViewBobbing(MatrixStack matrices, float tickProgress, CallbackInfo ci) {
-        if (!ModConfig.get().viewBobbing) {
+        if (!ModConfig.viewBobbing) {
             ci.cancel();
         }
     }

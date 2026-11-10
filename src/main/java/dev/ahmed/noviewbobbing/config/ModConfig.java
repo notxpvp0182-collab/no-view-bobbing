@@ -14,21 +14,21 @@ public class ModConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("noviewbobbing.json");
 
-    private static ModConfig instance = new ModConfig();
+    public static boolean viewBobbing = false;
+    public static boolean handViewBobbing = false;
 
-    public boolean viewBobbing = false;
-    public boolean handViewBobbing = false;
-
-    public static ModConfig get() {
-        return instance;
+    private static class ConfigData {
+        boolean viewBobbing = false;
+        boolean handViewBobbing = false;
     }
 
     public static void load() {
         if (Files.exists(CONFIG_PATH)) {
             try (Reader reader = Files.newBufferedReader(CONFIG_PATH)) {
-                ModConfig loaded = GSON.fromJson(reader, ModConfig.class);
+                ConfigData loaded = GSON.fromJson(reader, ConfigData.class);
                 if (loaded != null) {
-                    instance = loaded;
+                    viewBobbing = loaded.viewBobbing;
+                    handViewBobbing = loaded.handViewBobbing;
                 }
             } catch (IOException ignored) {
             }
@@ -38,8 +38,11 @@ public class ModConfig {
     }
 
     public static void save() {
+        ConfigData data = new ConfigData();
+        data.viewBobbing = viewBobbing;
+        data.handViewBobbing = handViewBobbing;
         try (Writer writer = Files.newBufferedWriter(CONFIG_PATH)) {
-            GSON.toJson(instance, writer);
+            GSON.toJson(data, writer);
         } catch (IOException ignored) {
         }
     }

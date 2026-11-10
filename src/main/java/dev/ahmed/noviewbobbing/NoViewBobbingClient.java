@@ -21,17 +21,15 @@ public class NoViewBobbingClient implements ClientModInitializer {
         toggleKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.noviewbobbing.toggle",
                 InputUtil.Type.KEYSYM,
-                InputUtil.UNKNOWN_KEY.getCode(), // Default: Unbound
+                InputUtil.UNKNOWN_KEY.getCode(),
                 category
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleKeyBinding.wasPressed()) {
-                ModConfig config = ModConfig.get();
-                // If both are already OFF, toggle both ON; otherwise toggle both OFF
-                boolean newState = !config.viewBobbing && !config.handViewBobbing;
-                config.viewBobbing = newState;
-                config.handViewBobbing = newState;
+                boolean newState = !ModConfig.viewBobbing && !ModConfig.handViewBobbing;
+                ModConfig.viewBobbing = newState;
+                ModConfig.handViewBobbing = newState;
                 ModConfig.save();
             }
         });

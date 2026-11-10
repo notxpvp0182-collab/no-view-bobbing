@@ -23,23 +23,19 @@ public class NoViewBobbingScreen extends Screen {
         int row1Y = this.height / 2 - 14;
         int row2Y = this.height / 2 + 14;
 
-        // View Bobbing [ON/OFF]
         this.addDrawableChild(ButtonWidget.builder(
-                ScreenTexts.onOrOff(ModConfig.get().viewBobbing),
+                ScreenTexts.onOrOff(ModConfig.viewBobbing),
                 button -> {
-                    ModConfig.get().viewBobbing = !ModConfig.get().viewBobbing;
-                    button.setMessage(ScreenTexts.onOrOff(ModConfig.get().viewBobbing));
-                    ModConfig.save();
+                    ModConfig.viewBobbing = !ModConfig.viewBobbing;
+                    button.setMessage(ScreenTexts.onOrOff(ModConfig.viewBobbing));
                 }
         ).dimensions(centerX + 20, row1Y, 80, 20).build());
 
-        // Hand View Bobbing [ON/OFF]
         this.addDrawableChild(ButtonWidget.builder(
-                ScreenTexts.onOrOff(ModConfig.get().handViewBobbing),
+                ScreenTexts.onOrOff(ModConfig.handViewBobbing),
                 button -> {
-                    ModConfig.get().handViewBobbing = !ModConfig.get().handViewBobbing;
-                    button.setMessage(ScreenTexts.onOrOff(ModConfig.get().handViewBobbing));
-                    ModConfig.save();
+                    ModConfig.handViewBobbing = !ModConfig.handViewBobbing;
+                    button.setMessage(ScreenTexts.onOrOff(ModConfig.handViewBobbing));
                 }
         ).dimensions(centerX + 20, row2Y, 80, 20).build());
     }
